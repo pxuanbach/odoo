@@ -1,6 +1,7 @@
 # dotfiles, with exceptions:
 .*
 !.gitignore
+!.editorconfig
 # python compiled files
 *.py[co]
 # emacs backup files
