@@ -11,6 +11,10 @@
         "security/hostel_security.xml",
         "security/ir.model.access.csv",
         "views/hostel.xml",
+        "views/hostel_room.xml",
+        "views/hostel_student.xml",
+        "views/hostel_amenities.xml",
+        "data/data.xml",
     ],
     # 'assets': {
     # 	'web.assets_backend': [
@@ -18,4 +22,5 @@
     # 	],
     # },
     # 'demo': ['demo.xml'],
+    "installable": True
 }
