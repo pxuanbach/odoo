@@ -3,6 +3,9 @@ from odoo import api, fields, models
 
 class HostelStudent(models.Model):
     _name = "hostel.student"
+    _description = "Hostel Student Information"
+
+    partner_id = fields.Many2one('res.partner', ondelete='cascade')
     
     name = fields.Char("Student Name")
     gender = fields.Selection([("male", "Male"),
