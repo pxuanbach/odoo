@@ -3,6 +3,7 @@ from odoo import api, fields, models
 
 class HostelStudent(models.Model):
     _name = "hostel.student"
+    
     name = fields.Char("Student Name")
     gender = fields.Selection([("male", "Male"),
         ("female", "Female"), ("other", "Other")],
@@ -11,6 +12,7 @@ class HostelStudent(models.Model):
         help="Activate/Deactivate hostel record")
     room_id = fields.Many2one("hostel.room", "Room",
         help="Select hostel room")
+    hostel_id = fields.Many2one("hostel.hostel", related='room_id.hostel_id')
     status = fields.Selection([("draft", "Draft"),
         ("reservation", "Reservation"), ("pending", "Pending"),
         ("paid", "Done"),("discharge", "Discharge"), ("cancel", "Cancel")],

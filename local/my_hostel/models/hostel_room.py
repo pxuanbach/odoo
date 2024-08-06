@@ -10,6 +10,7 @@ class HostelRoom(models.Model):
         ("room_no_unique", "unique(room_no)", "Room number must be unique!")]
 
     name = fields.Char(string="Room Name", required=True)
+    hostel_id = fields.Many2one("hostel.hostel", "hostel", help="Name of hostel")
     room_no = fields.Char("Room No.", required=True)
     floor_no = fields.Integer("Floor No.", default=1, help="Floor Number")
     currency_id = fields.Many2one('res.currency', string='Currency')

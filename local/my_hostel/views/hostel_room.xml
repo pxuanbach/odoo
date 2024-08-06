@@ -22,6 +22,7 @@
                         <group col="4" name="main">
                             <field name="name"/>
                             <field name="room_no"/>
+                            <field name="hostel_id" required="1"/>
                             <field name="floor_no"/>
                         </group>
                         <group col="4">
