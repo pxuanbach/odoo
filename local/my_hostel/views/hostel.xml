@@ -60,7 +60,11 @@
                             <field name="type"/>
                             <field name="hostel_rating"/>
                             <field name="other_info"/>
+                            <field name="ref_doc_id"/>
                         </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
                     </group>
                 </sheet>
             </form>
