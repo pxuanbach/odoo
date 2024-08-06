@@ -62,3 +62,10 @@ class HostelRoom(models.Model):
         
     def make_closed(self):
         self.change_state('closed')
+
+    def log_all_room_members(self):
+        # This is an empty recordset of model hostel.student
+        hostel_room_obj = self.env['hostel.student']
+        all_members = hostel_room_obj.search([])
+        print("ALL MEMBERS:", all_members)
+        return True
