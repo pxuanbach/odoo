@@ -22,4 +22,3 @@ class HostelCategory(models.Model):
         if not self._check_recursion():
             raise models.ValidationError(
                 'Error! You cannot create recursive categories.')
-
