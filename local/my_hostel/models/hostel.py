@@ -36,6 +36,8 @@ class Hostel(models.Model):
     ref_doc_id = fields.Reference(
         selection='_referencable_models',
         string='Reference Document')
+    rector = fields.Many2one("res.partner", "Rector",
+        help="Select hostel rector")
 
     @api.depends('hostel_code')
     def _compute_display_name(self):
