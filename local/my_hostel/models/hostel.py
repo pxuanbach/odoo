@@ -32,6 +32,7 @@ class Hostel(models.Model):
     hostel_rating = fields.Float('Hostel Average Rating', 
         # digits=(14, 4),
         digits='Rating Value')
+    category_id = fields.Many2one('hostel.category')
 
     @api.depends('hostel_code')
     def _compute_display_name(self):

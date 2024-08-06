@@ -29,7 +29,7 @@
                             <field name="currency_id"/>
                         </group>
                         <notebook>
-                            <page name="room_studnets" string="Studnets">
+                            <page name="room_studnets" string="Students">
                                 <field name="student_ids"/>
                             </page>
                             <page name="hostel_amenities" string="Room Amenities">
