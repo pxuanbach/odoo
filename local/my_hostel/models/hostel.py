@@ -77,3 +77,12 @@ class Hostel(models.Model):
         partner = PartnerObj.search(domain)
         _logger.info('Partner found: %s', partner)
         return True
+
+    def sort_hostels_by_rating(self):
+        all_hostels = self.search([])
+        sorted_hostels = self.sort_rooms_by_rating(all_hostels)
+        _logger.info("Sorted Hostels %s %s", sorted_hostels.mapped('name'), sorted_hostels.mapped('hostel_rating'))
+
+    @api.model
+    def sort_rooms_by_rating(self, hostels):
+        return hostels.sorted(key='hostel_rating', reverse=True)
