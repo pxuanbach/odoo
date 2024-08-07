@@ -1,5 +1,9 @@
+import logging
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError, UserError
+
+
+_logger = logging.getLogger(__name__)
 
 
 class BaseArchive(models.AbstractModel):
@@ -94,3 +98,16 @@ class HostelRoom(models.Model):
     def update_room_no(self):
         self.ensure_one()
         self.room_no = "RM002"
+
+    # Filter recordset
+    def filter_members(self):
+        all_rooms = self.search([])
+        filtered_rooms = self.rooms_with_multiple_members(all_rooms)
+        _logger.info('Filtered Rooms: %s', filtered_rooms)
+
+    @api.model
+    def rooms_with_multiple_members(self, all_rooms):
+        def predicate(room):
+            if len(room.student_ids) > 1:
+                return True
+        return all_rooms.filtered(predicate)
