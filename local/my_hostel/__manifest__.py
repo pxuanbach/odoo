@@ -4,7 +4,7 @@
     'description': "Efficiently manage the entire residential facility in the school.", # Supports reStructuredText(RST) format (description is Deprecated),
     'author': "Pham Xuan Bach",
     'website': "http://www.example.com",
-    'category': 'Uncategorized',
+    'category':  "Tools",
     'version': '17.0.1.0.0',
     'depends': ['base'],
     "data": [
