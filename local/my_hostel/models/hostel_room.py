@@ -39,6 +39,7 @@ class HostelRoom(models.Model):
         ('available', 'Available'),
         ('closed', 'Closed')],
         'State', default="draft")
+    remarks = fields.Text('Remarks')
 
     @api.constrains("rent_amount")
     def _check_rent_amount(self):
@@ -120,3 +121,22 @@ class HostelRoom(models.Model):
     @api.model
     def get_members_names(self, rooms):
         return rooms.mapped('student_ids.name')
+
+    @api.model
+    def create(self, values):
+        if not self.user_has_groups('my_hostel.group_hostel_manager'):
+            if values.get('remarks'):
+                raise UserError(
+                    'You are not allowed to modify '
+                    'remarks'
+                )
+        return super(HostelRoom, self).create(values)
+    
+    def write(self, values):
+        if not self.user_has_groups('my_hostel.group_hostel_manager'):
+            if values.get('remarks'):
+                raise UserError(
+                    'You are not allowed to modify '
+                    'manager_remarks'
+                )
+        return super(HostelRoom, self).write(values)
