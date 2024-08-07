@@ -1,4 +1,8 @@
+import logging
 from odoo import api, fields, models
+
+
+_logger = logging.getLogger(__name__)
 
 
 class Hostel(models.Model):
@@ -52,3 +56,24 @@ class Hostel(models.Model):
         models = self.env['ir.model'].search([
             ('field_id.name', '=', 'message_ids')])
         return [(x.model, x.name) for x in models]
+
+    def find_room(self):
+        domain = [
+            '|',
+                '&', ('name', 'ilike', 'Berloga Capsule JBR'),
+                    ('category_id.name', 'ilike', 'VIP'),
+                '&', ('name', 'ilike', 'Michael'),
+                    ('category_id.name', 'ilike', 'VIP')
+        ]
+        rooms = self.search(domain)
+        _logger.info('Room found: %s', rooms)
+        return True
+
+    def find_partner(self):
+        PartnerObj = self.env['res.partner']
+        domain = [
+            ('name', 'ilike', 'Azure'),
+        ]
+        partner = PartnerObj.search(domain)
+        _logger.info('Partner found: %s', partner)
+        return True
