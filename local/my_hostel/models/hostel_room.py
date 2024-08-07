@@ -111,3 +111,12 @@ class HostelRoom(models.Model):
             if len(room.student_ids) > 1:
                 return True
         return all_rooms.filtered(predicate)
+    
+    def get_members_name(self):
+        all_rooms = self.search([])
+        filtered_rooms = self.get_members_names(all_rooms)
+        _logger.info('Members Name: %s', filtered_rooms)
+
+    @api.model
+    def get_members_names(self, rooms):
+        return rooms.mapped('student_ids.name')

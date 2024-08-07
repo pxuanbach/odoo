@@ -41,6 +41,7 @@
                         <button name="create_categories" string="Create Categories" type="object"/>
                         <button name="update_room_no" string="Update Room No" type="object"/>
                         <button name="filter_members" string="Filter Members" type="object"/>
+                        <button name="get_members_name" string="Members Name" type="object"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
