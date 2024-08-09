@@ -40,6 +40,7 @@ class HostelRoom(models.Model):
         ('closed', 'Closed')],
         'State', default="draft")
     remarks = fields.Text('Remarks')
+    previous_room_id = fields.Many2one('hostel.room', string='Previous Room')
 
     @api.constrains("rent_amount")
     def _check_rent_amount(self):
@@ -140,3 +141,25 @@ class HostelRoom(models.Model):
                     'manager_remarks'
                 )
         return super(HostelRoom, self).write(values)
+
+    def name_get(self):
+        result = []
+        for room in self:
+            member = room.member_ids.mapped('name')
+            name = '%s (%s)' % (room.name, ', '.join(member))
+            result.append((room.id, name))
+            return result
+
+    @api.model
+    def _name_search(self, name='', domain=None, operator='ilike', limit=100, order=None):
+        domain = [] if domain is None else domain.copy()
+        if not(name == '' and operator == 'ilike'):
+            domain += ['|', '|', '|',
+                ('name', operator, name),
+                ('room_no', operator, name),
+                ('student_ids.name', operator, name)
+            ]
+        return super(HostelRoom, self)._name_search(
+            name=name, domain=domain, operator=operator,
+            limit=limit, order=order)
+        

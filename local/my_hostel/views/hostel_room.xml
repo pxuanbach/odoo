@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+
         <record id="view_hostel_room_tree" model="ir.ui.view">
             <field name="name">hostel.room.tree</field>
             <field name="model">hostel.room</field>
@@ -49,6 +50,7 @@
                             <field name="room_no"/>
                             <field name="hostel_id" required="1"/>
                             <field name="floor_no"/>
+                            <field name="previous_room_id" />
                         </group>
                         <group col="4">
                             <field name="rent_amount"/>
@@ -92,7 +94,6 @@
         <!-- <menuitem id="hostel_room_menu" name="Hostel Room" parent="my_hostel.hostel_main_menu" 
             action="my_hostel.action_hostel" groups="my_hostel.group_hostel_user" 
             sequence="2"/> -->
-
 
     </data>
 </odoo>
