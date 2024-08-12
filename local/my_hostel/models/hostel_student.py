@@ -1,3 +1,4 @@
+from datetime import timedelta
 from odoo import api, fields, models, _
 
 
@@ -26,8 +27,15 @@ class HostelStudent(models.Model):
         default=fields.Datetime.today)
     discharge_date = fields.Date("Discharge Date",
         help="Date on which student discharge")
-    duration = fields.Integer("Duration", compute="_compute_check_duration", inverse="_inverse_duration",
+    duration = fields.Integer("Duration", inverse="_inverse_duration",
                                 help="Enter duration of living")
+    
+    def _inverse_duration(self):
+        for stu in self:
+            if stu.discharge_date and stu.admission_date:
+                duration = (stu.discharge_date - stu.admission_date).days
+                if duration != stu.duration:
+                    stu.discharge_date = (stu.admission_date + timedelta(days=stu.duration)).strftime('%Y-%m-%d')
 
     def action_remove_room(self):
         if self.env.context.get("is_hostel_room"):
@@ -44,3 +52,9 @@ class HostelStudent(models.Model):
             'target': 'new',
         }
 
+    @api.onchange('admission_date', 'discharge_date')
+    def onchange_duration(self):
+        if self.discharge_date and self.admission_date:
+            self.duration = (self.discharge_date.year - \
+                self.admission_date.year) * 12 + \
+                (self.discharge_date.month - self.admission_date.month)
