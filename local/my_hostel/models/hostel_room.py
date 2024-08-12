@@ -153,3 +153,8 @@ class HostelRoom(models.Model):
             ['category_id'] # group_by
             )
         return grouped_result
+
+
+    def action_remove_room_members(self):
+        for student in self.student_ids:
+            student.with_context(is_hostel_room=True).action_remove_room()

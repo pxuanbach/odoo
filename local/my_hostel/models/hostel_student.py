@@ -28,3 +28,7 @@ class HostelStudent(models.Model):
         help="Date on which student discharge")
     duration = fields.Integer("Duration", compute="_compute_check_duration", inverse="_inverse_duration",
                                 help="Enter duration of living")
+
+    def action_remove_room(self):
+        if self.env.context.get("is_hostel_room"):
+            self.room_id = False

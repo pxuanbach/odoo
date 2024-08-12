@@ -33,12 +33,13 @@
             <field name="arch" type="xml">
                 <form string="Room">
                     <header>
-                        <button name="log_all_room_members"  string="Log Members" type="object"/>
+                        <!-- <button name="log_all_room_members"  string="Log Members" type="object"/>
                         <button name="create_categories" string="Create Categories" type="object"/>
                         <button name="update_room_no" string="Update Room No" type="object"/>
                         <button name="filter_members" string="Filter Members" type="object"/>
                         <button name="get_members_name" string="Members Name" type="object"/>
-                        <button name="grouped_data" string="Grouped Data" type="object"/>
+                        <button name="grouped_data" string="Grouped Data" type="object"/> -->
+                        <button name="action_remove_room_members" string="Remove Members" type="object"/>
                     </header>
                     <sheet>  
                         <group col="4" name="main">
