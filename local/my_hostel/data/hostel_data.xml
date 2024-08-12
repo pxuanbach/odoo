@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="elephant_castle" model="hostel.hostel">
+        <field name="name">Elephant and Castle Hostel</field>
+        <field name="hostel_code">3729136</field>
+        <field name="street">London, United Kingdom</field>
+        <field name="street2"></field>
+        <field name="zip"></field>
+        <field name="city">London</field>
+        <field name="phone">028392829</field>
+        <field name="mobile">028392829</field>
+        <field name="email">elephant.castle@gmail.com</field>
+        <field name="hostel_floors">2</field>
+        <field name="active">1</field>
+        <field name="type">individual</field>
+        <field name="description">Superhost - 12 years hosting</field>
+        <field name="other_info">Elephant and Castle is a vibrant neighbourhood just south of the River Thames in Central London. A key transport node, a familiar landmark and home to thousands of people. Nightlife includes hip Corsica Studios and iconic dance club the Ministry of Sound. The area is known for Latin American eats and its global street fare at Mercato Metropolitano food hall. Culture: Imperial War Museum and Southwark Playhouse.</field>
+        <field name="hostel_rating">4.81</field>
+    </record>
+
+</odoo>

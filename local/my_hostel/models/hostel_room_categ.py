@@ -7,6 +7,7 @@ class RoomCategory(models.Model):
 
     name = fields.Char('Category')
     description = fields.Text('Description')
+    amount = fields.Float("Amount", help="Enter amount per month")
     parent_id = fields.Many2one(
         'hostel.room.category',
         string='Parent Category',

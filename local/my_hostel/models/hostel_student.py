@@ -21,3 +21,10 @@ class HostelStudent(models.Model):
         ("paid", "Done"),("discharge", "Discharge"), ("cancel", "Cancel")],
         string="Status", copy=False, default="draft",
         help="State of the student hostel")
+    admission_date = fields.Date("Admission Date",
+        help="Date of admission in hostel",
+        default=fields.Datetime.today)
+    discharge_date = fields.Date("Discharge Date",
+        help="Date on which student discharge")
+    duration = fields.Integer("Duration", compute="_compute_check_duration", inverse="_inverse_duration",
+                                help="Enter duration of living")

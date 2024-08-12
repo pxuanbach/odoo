@@ -34,40 +34,18 @@ class HostelRoom(models.Model):
     hostel_amenities_ids = fields.Many2many("hostel.amenities",
         string="Amenities", domain="[('active', '=', True)]",
         help="Select hostel room amenities")
-    state = fields.Selection([
-        ('draft', 'Unavailable'),
-        ('available', 'Available'),
-        ('closed', 'Closed')],
-        'State', default="draft")
+    student_per_room = fields.Integer("Student Per Room", help="Students allocated per room")
+    availability = fields.Float(compute="_compute_check_availability",
+        store=True, string="Availability", help="Room availability in hostel")
     remarks = fields.Text('Remarks')
     previous_room_id = fields.Many2one('hostel.room', string='Previous Room')
+    room_category_id = fields.Many2one('hostel.room.category', string='Room Category')
 
     @api.constrains("rent_amount")
     def _check_rent_amount(self):
         """Constraint on negative rent amount"""
         if self.rent_amount < 0:
             raise ValidationError(_("Rent Amount Per Month should not be a negative value!"))
-
-    @api.model
-    def is_allowed_transition(self, old_state, new_state):
-        allowed = [('draft', 'available'),
-                   ('available', 'closed'),
-                   ('closed', 'draft')]
-        return (old_state, new_state) in allowed
-
-    def change_state(self, new_state):
-        for room in self:
-            if room.is_allowed_transition(room.state, new_state):
-                room.state = new_state
-            else:
-                msg = _('Moving from %s to %s is not allowed') % (room.state, new_state)
-                raise UserError(msg)
-        
-    def make_available(self):
-        self.change_state('available')
-        
-    def make_closed(self):
-        self.change_state('closed')
 
     def log_all_room_members(self):
         # This is an empty recordset of model hostel.student
@@ -162,4 +140,16 @@ class HostelRoom(models.Model):
         return super(HostelRoom, self)._name_search(
             name=name, domain=domain, operator=operator,
             limit=limit, order=order)
-        
+    
+    def grouped_data(self):
+        data = self._get_average_rent_amount()
+        _logger.info("Grouped Data %s" % data)
+    
+    @api.model
+    def _get_average_rent_amount(self):
+        grouped_result = self.read_group(
+            [('rent_amount', "!=", False)], # Domain
+            ['category_id', 'rent_amount:avg'], # Fields to access
+            ['category_id'] # group_by
+            )
+        return grouped_result

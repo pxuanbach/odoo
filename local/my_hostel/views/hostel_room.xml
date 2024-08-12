@@ -10,7 +10,6 @@
                     <field name="name"/>
                     <field name="room_no"/>
                     <field name="floor_no"/>
-                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -24,7 +23,6 @@
                 <field name="name"/>
                 <field name="room_no"/>
                 <field name="floor_no"/>
-                <field name="state"/>
             </search>
         </field>
     </record>
@@ -35,16 +33,14 @@
             <field name="arch" type="xml">
                 <form string="Room">
                     <header>
-                        <button name="make_available" string="Make Available" type="object"/>
-                        <button name="make_closed" string="Make Borrowed" type="object"/>
                         <button name="log_all_room_members"  string="Log Members" type="object"/>
                         <button name="create_categories" string="Create Categories" type="object"/>
                         <button name="update_room_no" string="Update Room No" type="object"/>
                         <button name="filter_members" string="Filter Members" type="object"/>
                         <button name="get_members_name" string="Members Name" type="object"/>
-                        <field name="state" widget="statusbar"/>
+                        <button name="grouped_data" string="Grouped Data" type="object"/>
                     </header>
-                    <sheet>
+                    <sheet>  
                         <group col="4" name="main">
                             <field name="name"/>
                             <field name="room_no"/>
@@ -55,16 +51,23 @@
                         <group col="4">
                             <field name="rent_amount"/>
                             <field name="currency_id"/>
+                            <field name="student_per_room"/>
                             <field name="remarks"/>
+                            <field name="availability"/>
                             <field name="active"/>
                         </group>
                         <notebook>
-                            <page name="room_studnets" string="Students">
+                            <page name="room_students" string="Students">
                                 <field name="student_ids"/>
                             </page>
                             <page name="hostel_amenities" string="Room Amenities">
                                 <group>
                                     <field name="hostel_amenities_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                            <page name="room_categories" string="Room Categories">
+                                <group>
+                                    <field name="room_category_id" />
                                 </group>
                             </page>
                         </notebook>

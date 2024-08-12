@@ -26,9 +26,8 @@ class Hostel(models.Model):
     hostel_floors = fields.Integer(string="Total Floors")
     image = fields.Binary('Hostel Image')
     active = fields.Boolean("Active", default=True,
-    help="Activate/Deactivate hostel record")
-    type = fields.Selection([("male", "Boys"), ("female", "Girls"),
-        ("common", "Common")], "Type", help="Type of Hostel",
+        help="Activate/Deactivate hostel record")
+    type = fields.Selection([("individual", "Individual Host"), ("business", "Business Host")], "Type", help="Type of Hostel",
         required=True, default="common")
     other_info = fields.Text("Other Information",
         help="Enter more information")

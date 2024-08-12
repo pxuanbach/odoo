@@ -17,12 +17,16 @@
         "views/hostel_amenities.xml",
         "views/hostel_categ.xml",
         "data/data.xml",
+        'data/hostel_room_categ_data.xml'
     ],
     # 'assets': {
     # 	'web.assets_backend': [
     #     	'web/static/src/xml/**/*',
     # 	],
     # },
-    # 'demo': ['demo.xml'],
+    'demo': [
+        'data/hostel_data.xml', 
+        'data/hostel_room_data.xml'
+    ],
     "installable": True
 }
