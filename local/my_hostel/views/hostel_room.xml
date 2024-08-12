@@ -39,7 +39,14 @@
                         <button name="filter_members" string="Filter Members" type="object"/>
                         <button name="get_members_name" string="Members Name" type="object"/>
                         <button name="grouped_data" string="Grouped Data" type="object"/> -->
-                        <button name="action_remove_room_members" string="Remove Members" type="object"/>
+                        <button name="action_remove_room_members" 
+                            string="Remove Members" 
+                            type="object" 
+                            class="btn-primary"/>
+                        <button name="action_category_with_amount"
+                           string="Log Category With Amount"
+                           type="object"
+                           class="btn-primary"/>
                     </header>
                     <sheet>  
                         <group col="4" name="main">

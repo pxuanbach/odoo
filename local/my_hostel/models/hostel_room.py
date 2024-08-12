@@ -158,3 +158,25 @@ class HostelRoom(models.Model):
     def action_remove_room_members(self):
         for student in self.student_ids:
             student.with_context(is_hostel_room=True).action_remove_room()
+
+    def action_category_with_amount(self):
+        self.env.cr.execute("""
+            SELECT
+                hrc.id,
+                hrc.name,
+                hrc.amount
+            FROM
+                hostel_room AS hostel_room
+            JOIN
+                hostel_room_category as hrc ON hrc.id = hostel_room.room_category_id
+            WHERE 
+                1=1
+                AND hostel_room.room_category_id = %(cate_id)s
+                AND hostel_room.id = %(id)s
+            ;""",
+            {
+               'cate_id': self.room_category_id.id,
+               'id': self.id
+            })
+        result = self.env.cr.fetchall()
+        _logger.warning("Hostel Room With Amount: %s", result)
