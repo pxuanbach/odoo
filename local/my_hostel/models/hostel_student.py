@@ -27,7 +27,7 @@ class HostelStudent(models.Model):
         default=fields.Datetime.today)
     discharge_date = fields.Date("Discharge Date",
         help="Date on which student discharge")
-    duration = fields.Integer("Duration", inverse="_inverse_duration",
+    duration = fields.Integer("Duration", compute="onchange_duration", inverse="_inverse_duration",
                                 help="Enter duration of living")
     
     def _inverse_duration(self):
@@ -52,7 +52,14 @@ class HostelStudent(models.Model):
             'target': 'new',
         }
 
-    @api.onchange('admission_date', 'discharge_date')
+    # @api.onchange('admission_date', 'discharge_date')
+    # def onchange_duration(self):
+    #     if self.discharge_date and self.admission_date:
+    #         self.duration = (self.discharge_date.year - \
+    #             self.admission_date.year) * 12 + \
+    #             (self.discharge_date.month - self.admission_date.month)
+            
+    @api.depends('admission_date', 'discharge_date')
     def onchange_duration(self):
         if self.discharge_date and self.admission_date:
             self.duration = (self.discharge_date.year - \
