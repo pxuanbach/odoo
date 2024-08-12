@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class HostelStudent(models.Model):
@@ -32,3 +32,15 @@ class HostelStudent(models.Model):
     def action_remove_room(self):
         if self.env.context.get("is_hostel_room"):
             self.room_id = False
+
+    def action_assign_room(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Assign Room'),
+            'res_model': 'assign.room.student.wizard',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'views': [[False, 'form']],
+            'target': 'new',
+        }
+

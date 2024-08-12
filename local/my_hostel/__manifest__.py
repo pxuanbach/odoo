@@ -17,7 +17,8 @@
         "views/hostel_amenities.xml",
         "views/hostel_categ.xml",
         "data/data.xml",
-        'data/hostel_room_categ_data.xml'
+        'data/hostel_room_categ_data.xml',
+        "wizard/assign_room_student.xml",
     ],
     # 'assets': {
     # 	'web.assets_backend': [
