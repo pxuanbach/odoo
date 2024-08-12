@@ -41,6 +41,12 @@ class HostelRoom(models.Model):
     previous_room_id = fields.Many2one('hostel.room', string='Previous Room')
     room_category_id = fields.Many2one('hostel.room.category', string='Room Category')
 
+    @api.depends("student_per_room", "student_ids")
+    def _compute_check_availability(self):
+        """Method to check room availability"""
+        for rec in self:
+            rec.availability = rec.student_per_room - len(rec.student_ids.ids)
+
     @api.constrains("rent_amount")
     def _check_rent_amount(self):
         """Constraint on negative rent amount"""

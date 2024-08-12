@@ -6,3 +6,4 @@ from . import hostel_amenities
 from . import hostel_categ
 from . import res_partner
 from . import hostel_room_categ
+from . import hostel_room_availability
