@@ -17,6 +17,7 @@
         "views/hostel_amenities.xml",
         "views/hostel_categ.xml",
         "views/hostel_room_availability.xml",
+        "views/res_config_settings.xml",
         "data/data.xml",
         'data/hostel_room_categ_data.xml',
         "wizard/assign_room_student.xml",
