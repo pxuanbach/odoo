@@ -22,11 +22,13 @@
         'data/hostel_room_categ_data.xml',
         "wizard/assign_room_student.xml",
     ],
-    # 'assets': {
-    # 	'web.assets_backend': [
-    #     	'web/static/src/xml/**/*',
-    # 	],
-    # },
+   'assets': {
+        'web.assets_backend': [
+            'my_hostel/static/src/scss/field_widget.scss',
+            'my_hostel/static/src/js/field_widget.js',
+            'my_hostel/static/src/xml/field_widget.xml',
+        ],
+    },
     'demo': [
         'data/hostel_data.xml', 
         'data/hostel_room_data.xml'

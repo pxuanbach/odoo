@@ -40,6 +40,7 @@ class HostelRoom(models.Model):
     remarks = fields.Text('Remarks')
     previous_room_id = fields.Many2one('hostel.room', string='Previous Room')
     room_category_id = fields.Many2one('hostel.room.category', string='Room Category')
+    category = fields.Integer('Category')
 
     @api.depends("student_per_room", "student_ids")
     def _compute_check_availability(self):

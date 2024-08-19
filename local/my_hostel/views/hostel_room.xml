@@ -63,6 +63,7 @@
                             <field name="remarks"/>
                             <field name="availability"/>
                             <field name="active"/>
+                            <field name="category" widget="category_color"/>
                         </group>
                         <notebook>
                             <page name="room_students" string="Students">
